@@ -21,37 +21,50 @@ void Tower::setName(string s)
 
 bool Tower::isEmpty()
 {
-	return (size == 0);
+	return (discs.size() == 0);
+}
+
+bool Tower::isValidAction(short d)
+{
+	bool flag = false;
+	if (d < discs.back())
+	{
+		flag = true;
+	}
+	return flag;
 }
 
 short Tower::getSize()
 {
-	return size;
+	return discs.size();
 }
 
 short Tower::peek()
 {
-	return discs.top();
+	//return discs.top();
+}
+
+short Tower::peekAt(int index)
+{
+	return discs.at(index);
 }
 
 short Tower::takeDisc()
 {
-	short d = discs.top();
-	discs.pop();
-	--size;
+	//short d = discs.top();
+	//discs.pop();
+	short d = discs.back();
+	discs.pop_back();
 	return d;
 }
 
-bool Tower::addDisc(short d)
+void Tower::addDisc(short d)
 {
-	bool result = false;
-	if (d < discs.top())
+	if (d < discs.back())
 	{
-		discs.push(d);
-		++size;
+		discs.push_back(d);;
 		result = true;
 	}
-	return true;
 }
 
 

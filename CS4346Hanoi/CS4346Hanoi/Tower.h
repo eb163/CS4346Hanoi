@@ -1,5 +1,6 @@
 #pragma once
 #include <stack>
+#include <vector>
 #include <string>
 /*
 	The Tower class is the primary interactable game element. It is a container of shorts representing discs.
@@ -11,13 +12,14 @@
 
 using std::stack;
 using std::string;
+using std::vector;
 
 class Tower
 {
 private:
 	string name;
-	short size;
-	stack<short> discs;
+	//stack<short> discs;
+	vector<short> discs;
 
 protected:
 
@@ -27,9 +29,11 @@ public:
 	string getName();
 	void setName(string s);
 	bool isEmpty();
+	bool isValidAction(short d);
 	short getSize();
 	short peek();
+	short peekAt(int index);
 	short takeDisc();
-	bool addDisc(short d);
+	void addDisc(short d);
 };
 

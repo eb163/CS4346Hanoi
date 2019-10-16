@@ -9,6 +9,16 @@ Tower::~Tower()
 {
 }
 
+string Tower::getName()
+{
+	return name;
+}
+
+void Tower::setName(string s)
+{
+	name = s;
+}
+
 bool Tower::isEmpty()
 {
 	return (size == 0);

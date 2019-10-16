@@ -10,6 +10,14 @@ Various methods for printing game data to the screen
 
 using std::cout;
 using std::endl;
+using std::cin;
+
+void pause()
+{
+	char ch;
+	cout << "Paused! Press any key to continue." << endl;
+	cin >> ch;
+}
 
 void printTower(Tower t)
 {
@@ -31,5 +39,5 @@ void printTower(Tower t)
 
 void printLine(char ch = '-', int totalChar = 80)
 {
-	cout << string(ch, totalChar) << endl;
+	cout << string(totalChar, ch) << endl;
 }

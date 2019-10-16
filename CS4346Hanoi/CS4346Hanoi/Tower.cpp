@@ -61,7 +61,14 @@ short Tower::takeDisc()
 
 void Tower::addDisc(short d)
 {
-	if (d < discs.back())
+	if (discs.empty() == false)
+	{
+		if (d < discs.back())
+		{
+			discs.push_back(d);
+		}
+	}
+	else
 	{
 		discs.push_back(d);
 	}

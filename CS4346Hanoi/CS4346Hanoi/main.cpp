@@ -7,5 +7,13 @@ using std::cin;
 
 int main()
 {
+	///////////////////////////////////
+	//TESTS
+	//////////////////////////////////
+	printLine('=');
+	cout << "TESTS" << endl;
+	printLine('=');
+	unitTestTower();
+
 	return 0;
 }

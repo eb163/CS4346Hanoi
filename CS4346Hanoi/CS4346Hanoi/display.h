@@ -15,9 +15,21 @@ void printTower(Tower t)
 {
 	cout << t.getName() << ": ";
 	const int size = t.getSize();
-	for (int i = 0; i < size; ++i)
+	if (size > 0)
 	{
-		cout << t.peekAt(i) << " ";
+		for (int i = 0; i < size; ++i)
+		{
+			cout << t.peekAt(i) << " ";
+		}
+	}
+	else
+	{
+		cout << "empty!";
 	}
 	cout << endl;
+}
+
+void printLine(char ch = '-', int totalChar = 80)
+{
+	cout << string(ch, totalChar) << endl;
 }

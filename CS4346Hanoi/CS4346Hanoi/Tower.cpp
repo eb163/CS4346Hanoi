@@ -42,6 +42,7 @@ short Tower::getSize()
 short Tower::peek()
 {
 	//return discs.top();
+	return discs.back();
 }
 
 short Tower::peekAt(int index)
@@ -62,8 +63,7 @@ void Tower::addDisc(short d)
 {
 	if (d < discs.back())
 	{
-		discs.push_back(d);;
-		result = true;
+		discs.push_back(d);
 	}
 }
 

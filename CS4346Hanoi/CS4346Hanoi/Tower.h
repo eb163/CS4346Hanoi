@@ -1,5 +1,4 @@
 #pragma once
-#include <stack>
 #include <vector>
 #include <string>
 /*
@@ -9,8 +8,6 @@
 	No duplicate discs may exist in a Tower.
 	The tower will only accept a new disc if the sie of the disc is smaller than the current top of the disc.
 */
-
-using std::stack;
 using std::string;
 using std::vector;
 
@@ -18,7 +15,6 @@ class Tower
 {
 private:
 	string name;
-	//stack<short> discs;
 	vector<short> discs;
 
 protected:

@@ -25,8 +25,9 @@ void printTower(Tower t, int score = -1)
 	cout << t.getName();
 	if (score != -1)
 	{
-		cout << "(" << score << "): ";
+		cout << "(" << score << ")";
 	}
+	cout << " : ";
 	const int size = t.getSize();
 	if (size > 0)
 	{

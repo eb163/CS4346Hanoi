@@ -7,6 +7,7 @@
 using std::cout;
 using std::endl;
 
+//tests the Tower data structure
 void unitTestTower()
 {
 	cout << "Unit Test Tower" << endl;
@@ -56,5 +57,30 @@ void unitTestTower()
 	printLine();
 
 	cout << "Unit Test Tower complete!" << endl;
+	pause();
+}
+
+//tests the game system with a basic set of 3 discs and 3 towers
+void systemTestBasicGame()
+{
+	cout << "\nSystem Test Basic Game (3 Towers and 3 Disks)" << endl;
+	short discTotal = 3;
+	Tower tA, tB, tC;
+	tA.setName("Tower A");
+	tB.setName("Tower B");
+	tC.setName("Tower C");
+	tA.init(discTotal);
+	tB.init(0);
+	tC.init(0);
+
+	printGameState(tA, tB, tC);
+
+	cout << "Testing copying Tower states with '=' operator!\n(tC = tA)" << endl;
+
+	tC = tA;
+	printGameState(tA, tB, tC);
+
+	cout << "\nSystem Test Basic Game completed!" << endl;
+
 	pause();
 }

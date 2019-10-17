@@ -41,3 +41,12 @@ void printLine(char ch = '-', int totalChar = 80)
 {
 	cout << string(totalChar, ch) << endl;
 }
+
+void printGameState(Tower a, Tower b, Tower c)
+{
+	printLine();
+	printTower(a);
+	printTower(b);
+	printTower(c);
+	printLine();
+}

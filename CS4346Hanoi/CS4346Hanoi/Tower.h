@@ -22,6 +22,7 @@ protected:
 public:
 	Tower();
 	~Tower();
+	void init(short totalDiscs); //set up the tower for the initial game state
 	string getName();
 	void setName(string s);
 	bool isEmpty();

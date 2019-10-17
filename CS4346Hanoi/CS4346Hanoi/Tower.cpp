@@ -9,6 +9,21 @@ Tower::~Tower()
 {
 }
 
+void Tower::init(short totalDiscs) //loads discs into tower in ascending order, largest at the bottom, smallest at the top
+{
+	if (totalDiscs > 0)
+	{
+		for (int curDisc = totalDiscs; curDisc > 0; --curDisc)
+		{
+			this->addDisc(curDisc);
+		}
+	}
+	else if (totalDiscs == 0)
+	{
+		discs.clear();
+	}
+}
+
 string Tower::getName()
 {
 	return name;

@@ -1,5 +1,9 @@
 #pragma once
 
+//TESTING PARAMETERS
+#define DEBUG_FULL			false
+#define DEBUG_PARTIAL		false
+
 #include "Tower.h"
 #include "display.h"
 #include <iostream>
@@ -65,9 +69,13 @@ void recursiveHanoi(int discNum, Tower& source, Tower& dest, Tower& spare, int d
 {
 	++depth;
 	++move;
+#if DEBUG_FULL == true
 	cout << "Move number: " << move << endl;
 	cout << "Recursion depth: " << depth << endl;
-	printGameState(source, spare, dest);
+	printGameStateCalcScores(source, spare, dest);
+#elif DEBUG_PARTIAL == true
+	printGameState(tA, tB, tC);
+#endif
 	short curDisc = 0;
 	if (discNum == 1) //base case
 	{
@@ -103,19 +111,21 @@ void systemTestBasicGame(short discTotal)
 	tB.init(0);
 	tC.init(0);
 
+#if DEBUG_FULL == true
+	printGameStateCalcScores(tA, tB, tC);
+#else
 	printGameState(tA, tB, tC);
-
-	/*
-	cout << "Testing copying Tower states with '=' operator!\n(tC = tA)" << endl;
-
-	tC = tA;
-	printGameState(tA, tB, tC);
-	*/
+#endif
 
 	cout << "\nAttempting to complete a game w/ recursive solution for " << discTotal << " discs!" << endl;
 	recursiveHanoiStarter(tA, tB, tC);
 	cout << "Recursion complete!" << endl;
+
+#if DEBUG_FULL == true
+	printGameStateCalcScores(tA, tB, tC);
+#else
 	printGameState(tA, tB, tC);
+#endif
 
 	cout << "\nSystem Test Basic Game completed!" << endl;
 

@@ -13,7 +13,9 @@ int main()
 	printLine('=');
 	cout << "TESTS" << endl;
 	printLine('=');
-	unitTestTower();
+	//unitTestTower();
+	short discsToTest = 3;
+	systemTestBasicGame(discsToTest);
 
 	return 0;
 }

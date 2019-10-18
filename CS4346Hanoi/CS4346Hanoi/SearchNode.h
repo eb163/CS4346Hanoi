@@ -21,5 +21,6 @@ public:
 
 	void setG(int n);
 	void setH(int n);
+	void setState(GameState gs);
 };
 

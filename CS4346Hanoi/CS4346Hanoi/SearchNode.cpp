@@ -41,3 +41,8 @@ void SearchNode::setH(int n)
 		h = n;
 	}
 }
+
+void SearchNode::setState(GameState gs)
+{
+	state = gs;
+}

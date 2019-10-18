@@ -60,6 +60,22 @@ void unitTestTower()
 	printTower(t);
 	printLine();
 
+	cout << "Creating a second Tower named T2!" << endl;
+	Tower t2; t2.setName("T2");
+	cout << "Copying discs from T to T2! (T2 should still be named T2)" << endl;
+	t2.copyDiscs(t);
+	printLine();
+	printTower(t);
+	printTower(t2);
+	printLine();
+
+	cout << "Now setting T2 = T (T2 should be exactly the same as T)" << endl;
+	t2 = t;
+	printLine();
+	printTower(t);
+	printTower(t2);
+	printLine();
+
 	cout << "Unit Test Tower complete!" << endl;
 	pause();
 }

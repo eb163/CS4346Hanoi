@@ -1,3 +1,7 @@
+#define TEST_UNIT_TOWER			true
+#define TEST_SYS_BASIC_GAME		true
+#define TEST_UNIT_GAMESTATE		true
+
 #include <iostream>
 #include "Tower.h"
 #include "display.h"
@@ -13,9 +17,14 @@ int main()
 	printLine('=');
 	cout << "TESTS" << endl;
 	printLine('=');
-	//unitTestTower();
-	short discsToTest = 3;
+#if TEST_UNIT_TOWER == true
+	unitTestTower();
+#endif
+
+#if TEST_SYS_BASIC_GAME == true
+	short discsToTest = 5;
 	systemTestBasicGame(discsToTest);
+#endif
 
 	return 0;
 }

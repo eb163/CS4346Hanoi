@@ -89,7 +89,7 @@ void Tower::addDisc(short d)
 	}
 }
 
-void Tower::operator=(Tower t)
+void Tower::copyDiscs(Tower t)
 {
 	discs.clear();
 	int tsize = t.getSize();
@@ -98,5 +98,3 @@ void Tower::operator=(Tower t)
 		addDisc(t.peekAt(i));
 	}
 }
-
-

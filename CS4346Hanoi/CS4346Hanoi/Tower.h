@@ -32,6 +32,6 @@ public:
 	short peekAt(int index);
 	short takeDisc();
 	void addDisc(short d);
-	void operator=(Tower t);
+	void copyDiscs(Tower t);
 };
 

@@ -156,20 +156,12 @@ void unitTestGameState()
 	cout << "Initializing GameState w/" << totalDiscs << "discs...";
 	GameState gstate; gstate.init(totalDiscs);
 	cout << "done." << endl;
-	printLine();
-	printTower(gstate.getTower(TowerSelection::TOWER_A));
-	printTower(gstate.getTower(TowerSelection::TOWER_B));
-	printTower(gstate.getTower(TowerSelection::TOWER_C));
-	printLine();
+	printGameState(gstate);
 
 	cout << "Moving top disc from Tower A to Tower C" << endl;
 	gstate.move(TOWER_A, TOWER_C);
 
-	printLine();
-	printTower(gstate.getTower(TowerSelection::TOWER_A));
-	printTower(gstate.getTower(TowerSelection::TOWER_B));
-	printTower(gstate.getTower(TowerSelection::TOWER_C));
-	printLine();
+	printGameState(gstate);
 
 	cout << "Creating an empty GameState gstate2...";
 	GameState gstate2;
@@ -180,10 +172,7 @@ void unitTestGameState()
 
 	printLine();
 	cout << "gstate2 contents: " << endl;
-	printTower(gstate2.getTower(TowerSelection::TOWER_A));
-	printTower(gstate2.getTower(TowerSelection::TOWER_B));
-	printTower(gstate2.getTower(TowerSelection::TOWER_C));
-	printLine();
+	printGameState(gstate2);
 
 	cout << "Unit Test GameState complete!" << endl;
 	pause();
@@ -221,14 +210,10 @@ void recursiveHanoiGameStateStarter(GameState& gs)
 void systemTestGameState(short totalDiscs)
 {
 	cout << "System test GameState" << endl;
-	cout << "Initializing GameState w/" << totalDiscs << "discs...";
+	cout << "Initializing GameState w/ " << totalDiscs << " discs...";
 	GameState gstate; gstate.init(totalDiscs);
 	cout << "done." << endl;
-	printLine();
-	printTower(gstate.getTower(TowerSelection::TOWER_A));
-	printTower(gstate.getTower(TowerSelection::TOWER_B));
-	printTower(gstate.getTower(TowerSelection::TOWER_C));
-	printLine();
+	printGameState(gstate);
 
 	cout << "Attemtping to play a game of hanoi with " << totalDiscs << " discs by recursion!" << endl;
 	cout << "Start Tower = A, End Tower = B" << endl;
@@ -237,11 +222,7 @@ void systemTestGameState(short totalDiscs)
 
 	cout << "Done!" << endl;
 
-	printLine();
-	printTower(gstate.getTower(TowerSelection::TOWER_A));
-	printTower(gstate.getTower(TowerSelection::TOWER_B));
-	printTower(gstate.getTower(TowerSelection::TOWER_C));
-	printLine();
+	printGameState(gstate);
 
 	pause();
 }

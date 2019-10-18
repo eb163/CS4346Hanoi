@@ -75,3 +75,12 @@ void printGameStateWScores(Tower a, int aScore, Tower b, int bScore, Tower c, in
 	//TODO
 	cout << "ERROR: printGameWScores() is not defined yet!" << endl;
 }
+
+void printGameState(GameState gs)
+{
+	printLine();
+	printTower(gs.getTower(TowerSelection::TOWER_A));
+	printTower(gs.getTower(TowerSelection::TOWER_B));
+	printTower(gs.getTower(TowerSelection::TOWER_C));
+	printLine();
+}

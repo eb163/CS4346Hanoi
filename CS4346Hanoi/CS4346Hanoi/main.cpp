@@ -1,6 +1,6 @@
 #define TEST_UNIT_TOWER			false
 #define TEST_SYS_BASIC_GAME		false
-#define TEST_UNIT_GAMESTATE		false
+#define TEST_UNIT_GAMESTATE		true
 #define TEST_SYS_GAMESTATE		true
 
 #include <iostream>

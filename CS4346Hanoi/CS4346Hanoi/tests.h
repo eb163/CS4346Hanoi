@@ -147,3 +147,82 @@ void systemTestBasicGame(short discTotal)
 
 	pause();
 }
+
+void recursiveHanoiGameState(GameState& gs, int discNum, TowerSelection src, TowerSelection dest, TowerSelection spare)
+{
+	if (discNum == 1) // base case
+	{
+		bool flag = gs.move(src, dest); //move top disc from src to dest
+		if (flag == false)
+		{
+			cout << "ERROR: Invalid move attempt made!" << endl;
+		}
+	}
+	else
+	{
+		recursiveHanoiGameState(gs, discNum - 1, src, spare, dest);
+		bool flag = gs.move(src, dest); //move top disc from src to dest
+		if (flag == false)
+		{
+			cout << "ERROR: Invalid move attempt made!" << endl;
+		}
+		recursiveHanoiGameState(gs, discNum - 1, spare, dest, src);
+	}
+}
+
+void recursiveHanoiGameStateStarter(GameState& gs)
+{
+	int totalDiscs = gs.getTower(TOWER_A).getSize();
+	recursiveHanoiGameState(gs, totalDiscs, TOWER_A, TOWER_B, TOWER_C);
+}
+
+//confirm the basic operations of GameState work
+void unitTestGameState()
+{
+	cout << "Unit Test GameState" << endl;
+	short totalDiscs = 5;
+	cout << "Initializing GameState w/" << totalDiscs << "discs...";
+	GameState gstate; gstate.init(totalDiscs);
+	cout << "done." << endl;
+	printLine();
+	printTower(gstate.getTower(TowerSelection::TOWER_A));
+	printTower(gstate.getTower(TowerSelection::TOWER_B));
+	printTower(gstate.getTower(TowerSelection::TOWER_C));
+	printLine();
+
+	cout << "Attemtping to play a game of hanoi with " << totalDiscs << " discs by recursion!" << endl;
+	cout << "Start Tower = A, End Tower = B" << endl;
+
+	recursiveHanoiGameStateStarter(gstate);
+
+	cout << "Done!" << endl;
+
+	printLine();
+	printTower(gstate.getTower(TowerSelection::TOWER_A));
+	printTower(gstate.getTower(TowerSelection::TOWER_B));
+	printTower(gstate.getTower(TowerSelection::TOWER_C));
+	printLine();
+
+	cout << "Creating an empty GameState gstate2...";
+	GameState gstate2;
+	cout << "Done!" << endl;
+	cout << "Attempting to set gState2 = gstate...";
+	gstate2 = gstate;
+	cout << "Done!" << endl;
+
+	printLine();
+	cout << "gstate2 contents: " << endl;
+	printTower(gstate2.getTower(TowerSelection::TOWER_A));
+	printTower(gstate2.getTower(TowerSelection::TOWER_B));
+	printTower(gstate2.getTower(TowerSelection::TOWER_C));
+	printLine();
+
+	cout << "Unit Test GameState complete!" << endl;
+	pause();
+}
+
+//try to play a full game of Hanoi using the GameState construct
+void systemTestGameState(short discTotal)
+{
+
+}

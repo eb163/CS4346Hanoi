@@ -42,9 +42,16 @@ bool Tower::isEmpty()
 bool Tower::isValidAction(short d)
 {
 	bool flag = false;
-	if (d < discs.back())
+	if (discs.size() > 0)
 	{
-		flag = true;
+		if (d < discs.back())
+		{
+			flag = true;
+		}
+	}
+	else
+	{
+		flag = true; //if this tower is empty any size disc can be moved to this tower
 	}
 	return flag;
 }

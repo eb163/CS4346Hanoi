@@ -21,6 +21,7 @@ public:
 	SearchNode peek();
 	SearchNode pop();
 	void add(SearchNode n);
+	void clear(); //whipe contents of PriorityQueue
 	int getSize();
 	bool isEmpty();
 	PriorityQueue();

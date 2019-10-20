@@ -43,6 +43,11 @@ void PriorityQueue::add(SearchNode n)
 	}
 }
 
+void PriorityQueue::clear()
+{
+	contents.clear();
+}
+
 int PriorityQueue::getSize()
 {
 	return contents.size();

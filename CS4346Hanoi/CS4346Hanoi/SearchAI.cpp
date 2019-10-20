@@ -14,15 +14,39 @@ SearchAI::~SearchAI()
 void SearchAI::startSearch(GameState initialState, GameState goalState)
 {
 	//setup the initialNode in the tree
+	SearchNode rootNode;
+	rootNode.setState(initialState);
+	rootNode.setG(0);
+	rootNode.setH(scoreGameState(initialState));
+
 	//set up the goalState for comparison
-	//call the search function
+	this->goalState = goalState;
+
+	//intialize the open nodes container
+	if (openNodes.empty() == false)
+	{
+		openNodes.clear();
+	}
+
+	//initialize the closed nodes container
+	if (closedNodes.empty() == false)
+	{
+		closedNodes.clear();
+	}
+
+	//add the root node to open
+	openNodes.push_back(rootNode);
+
+	//run search loop
+	do
+	{
+		SearchNode currN = openNodes.front();
+	} while (openNodes.empty() == false);
 }
 
 void SearchAI::search(GameState initialState, GameState goalState)
 {
 	//psuedocode of the search process
-	//intialize the open nodes container (frontier)
-	//initialize the closed nodes container
 	
 	//while open is not empty
 

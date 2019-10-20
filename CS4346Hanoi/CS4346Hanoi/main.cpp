@@ -1,10 +1,15 @@
 #define TEST_UNIT_TOWER			false
 #define TEST_SYS_BASIC_GAME		false
-#define TEST_UNIT_GAMESTATE		true
-#define TEST_SYS_GAMESTATE		true
+#define TEST_UNIT_GAMESTATE		false
+#define TEST_SYS_GAMESTATE		false
+#define TEST_UNIT_SEARCHNODE	false
+#define TEST_UNIT_PRIORITYQUEUE	true
 
 #include <iostream>
 #include "Tower.h"
+#include "GameState.h"
+#include "SearchNode.h"
+#include "PriorityQueue.h"
 #include "display.h"
 #include "tests.h"
 using std::cout;
@@ -34,6 +39,14 @@ int main()
 #if TEST_SYS_GAMESTATE == true
 	short discsToTest = 10;
 	systemTestGameState(discsToTest);
+#endif
+
+#if TEST_UNIT_SEARCHNODE == true
+	unitTestSearchNode();
+#endif
+
+#if TEST_UNIT_PRIORITYQUEUE == true
+	unitTestPriorityQueue();
 #endif
 
 	return 0;

@@ -5,6 +5,8 @@
 #define DEBUG_PARTIAL		false
 
 #include "Tower.h"
+#include "SearchNode.h"
+#include "PriorityQueue.h"
 #include "display.h"
 #include <iostream>
 
@@ -224,5 +226,81 @@ void systemTestGameState(short totalDiscs)
 
 	printGameState(gstate);
 
+	pause();
+}
+
+void unitTestSearchNode()
+{
+	cout << "Unit Test Search Node" << endl;
+
+	cout << "\nCreating an empty Search Node..";
+	SearchNode n1;
+	cout << " Done!" << endl;
+
+	GameState state; state.init(3);
+	cout << "Test data GameState: " << endl;
+	printGameState(state);
+	int g1 = 0, h1 = 10;
+	cout << "\nTest data G = " << g1 << ", H = " << h1 << endl;
+	cout << "\nSetting SearchNode g and h vals to test data!" << endl;
+	n1.setG(g1); n1.setH(h1);
+	cout << "\nSetting SearchNode to Test data GameState!" << endl;
+	n1.setState(state);
+	cout << "\nSearchNode contents:" << endl;
+	cout << "G = " << n1.getG() << " H = " << n1.getH() << endl;
+	printGameState(n1.getState());
+
+	pause();
+
+	cout << "Creating a child node...";
+	int g2 = g1 + 1;
+	int h2 = 5;
+	GameState state2; state2 = state; state2.move(TOWER_A, TOWER_C);
+	SearchNode n2; n2.setH(h2); n2.setG(g2); n2.setState(state2);
+	cout << " Done." << endl;
+
+	printGameState(n1.getState());
+	printGameState(n2.getState());
+
+	cout << "Unit Test Search Node complete!" << endl;
+	pause();
+}
+
+void unitTestPriorityQueue()
+{
+	cout << "Unit Test PriorityQueue" << endl;
+
+	//test data
+	//ORDER: sn4, sn1, sn3, sn2
+	int sn1G = 0, sn2G = 1, sn3G = 1, sn4G = 2;
+	int sn1H = 5, sn2H = 9, sn3H = 7, sn4H = 2;
+	SearchNode sn1; sn1.setG(sn1G); sn1.setH(sn1H);
+	SearchNode sn2; sn2.setG(sn2G); sn2.setH(sn2H);
+	SearchNode sn3; sn3.setG(sn3G); sn3.setH(sn3H);
+	SearchNode sn4; sn4.setG(sn4G); sn4.setH(sn4H);
+
+	cout << "Test data: sn1.F() = " << sn1.getF() << " sn2.F() = " << sn2.getF() << " sn3.F() = " << sn3.getF() << " sn4.F() = " << sn4.getF() << endl;
+
+	PriorityQueue pq;
+	cout << "Initial PriorityQueue size: " << pq.getSize() << endl;
+
+	cout << "Adding SearchNodes to PriorityQueue...";
+	cout << "\nAdding sn1..."; pq.add(sn1);
+	cout << "\nAdding sn2..."; pq.add(sn2);
+	cout << "\nAdding sn3..."; pq.add(sn3);
+	cout << "\nAdding sn4..."; pq.add(sn4);
+	cout << "...All done!" << endl;
+
+	int pqSize = pq.getSize();
+	cout << "PriorityQueue size: " << pqSize << endl;
+	cout << "PriorityQueue contents: ";
+	for (int i = 0; i < pqSize; ++i)
+	{
+		SearchNode n = pq.pop();
+		cout << n.getF() << " ";
+	}
+	cout << endl;
+
+	cout << "Unit Test PriorityQueue completed!" << endl;
 	pause();
 }

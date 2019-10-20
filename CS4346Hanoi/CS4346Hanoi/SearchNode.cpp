@@ -26,6 +26,11 @@ int SearchNode::getH()
 	return h;
 }
 
+int SearchNode::getF()
+{
+	return g + h;
+}
+
 void SearchNode::setG(int n)
 {
 	if (n > -1)

@@ -18,6 +18,7 @@ public:
 	GameState getState();
 	int getG();
 	int getH();
+	int getF();
 
 	void setG(int n);
 	void setH(int n);

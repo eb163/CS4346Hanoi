@@ -297,8 +297,8 @@ void unitTestPriorityQueue()
 	cout << "PriorityQueue contents: ";
 	for (int i = 0; i < pqSize; ++i)
 	{
-		SearchNode n = pq.pop();
-		cout << n.getF() << " ";
+		SearchNode* n = pq.pop();
+		cout << n->getF() << " ";
 	}
 	cout << endl;
 

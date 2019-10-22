@@ -5,6 +5,22 @@ SearchNode PriorityQueue::peek()
 	return contents.front();
 }
 
+SearchNode PriorityQueue::peekAt(int index)
+{
+	if (index < contents.size())
+	{
+		SearchNode result;
+		list<SearchNode>::iterator i = contents.begin();
+		for (int num = 0; num < index; ++num) { ++i; /*increment iterator*/ }
+		result = *i;
+		return result;
+	}
+	else
+	{
+		//throw an exception
+	}
+}
+
 SearchNode PriorityQueue::pop()
 {
 	SearchNode front = contents.front();

@@ -19,6 +19,7 @@ protected:
 
 public:
 	SearchNode peek();
+	SearchNode peekAt(int index);
 	SearchNode pop();
 	void add(SearchNode n);
 	void clear(); //whipe contents of PriorityQueue

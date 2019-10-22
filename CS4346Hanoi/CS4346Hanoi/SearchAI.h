@@ -33,8 +33,7 @@ public:
 	SearchAI();
 	~SearchAI();
 
-	virtual void startSearch(GameState initialState, GameState goalState); //pass the starting state and goal state for starting the search
-	virtual void search(GameState initialState, GameState goalState);
+	virtual void search(GameState initialState, GameState goalState); //pass the starting state and goal state for starting the search
 
 	bool isOpen(SearchNode n); //searches openNodes for a Node that matches n
 	bool isClosed(SearchNode n); //searches closedNodes for a Node that matches n

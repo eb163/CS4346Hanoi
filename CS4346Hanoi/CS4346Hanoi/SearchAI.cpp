@@ -260,7 +260,7 @@ SearchAI::~SearchAI()
 {
 }
 
-void SearchAI::startSearch(GameState initialState, GameState goalState)
+void SearchAI::search(GameState initialState, GameState goalState)
 {
 	//setup the initialNode in the tree
 	SearchNode rootNode;
@@ -306,33 +306,26 @@ void SearchAI::startSearch(GameState initialState, GameState goalState)
 		else
 		{
 			//generate children from currN
+			vector<SearchNode> moves = generateMoves(currN);
+			for (int i = 0; i < moves.size(); ++i)
+			{
+				//evaluate children
+				//evaluation is done during generation
 
-			//evaluate children
+				//check if any children are already in open or closed
+				bool inOpen = isOpen(moves.at(i));
+				bool inClosed = isClosed(moves.at(i));
 
-			//check if any children are already in open or closed
-
-			//add any children not already in a queue to open queue
+				//add any children not already in a queue to open queue
+				if ((inOpen == false) && (inClosed == false))
+				{
+					addNodeToOpen(moves.at(i));
+				}
+			}
+			moves.clear();
 		}
 
 		//repeat loop
 
 	} while (openNodes.isEmpty() == false);
-}
-
-void SearchAI::search(GameState initialState, GameState goalState)
-{
-	//psuedocode of the search process
-	
-	//while open is not empty
-
-	//get the next node in the open container
-
-	//compare if the current node matches the goal node
-
-	//else generate moves from this node
-
-	//for each generated move
-	//check if this move is in the open or closed trees
-	//if the current move is not in open or closed
-	//expand this node
 }

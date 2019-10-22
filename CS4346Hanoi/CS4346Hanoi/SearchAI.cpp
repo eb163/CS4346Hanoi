@@ -214,17 +214,17 @@ vector<SearchNode*> SearchAI::generateMoves(SearchNode* curr)
 	return moves;
 }
 
-void SearchAI::addNodeToOpen(SearchNode n)
+void SearchAI::addNodeToOpen(SearchNode* n)
 {
 	openNodes.add(n);
 }
 
-void SearchAI::addNodeToClosed(SearchNode n)
+void SearchAI::addNodeToClosed(SearchNode* n)
 {
 	closedNodes.push_back(n);
 }
 
-bool SearchAI::isOpen(SearchNode n)
+bool SearchAI::isOpen(SearchNode* n)
 {
 	bool flag = false;
 
@@ -237,7 +237,7 @@ bool SearchAI::isOpen(SearchNode n)
 	return flag;
 }
 
-bool SearchAI::isClosed(SearchNode n)
+bool SearchAI::isClosed(SearchNode* n)
 {
 	bool flag = false;
 

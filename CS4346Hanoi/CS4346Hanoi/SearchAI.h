@@ -30,6 +30,9 @@ protected:
 	vector<SearchNode> generateMoves(SearchNode curr); //generate a set of SearchNodes based on the state of the passed SearchNode
 */
 
+	void clearOpenNodes();
+	void clearClosedNodes();
+
 public:
 	SearchAI();
 	~SearchAI();
@@ -43,5 +46,7 @@ public:
 
 	void addNodeToOpen(SearchNode* n); //add a node to open (primarily for testing isOpen)
 	void addNodeToClosed(SearchNode* n); //add a Node to closed (priarily for testing isClosed)
+
+	void clear(); //for clearing heap without calling a new search
 };
 

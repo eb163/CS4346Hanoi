@@ -224,6 +224,12 @@ void SearchAI::addNodeToClosed(SearchNode* n)
 	closedNodes.push_back(n);
 }
 
+void SearchAI::clear()
+{
+	clearOpenNodes();
+	clearClosedNodes();
+}
+
 bool SearchAI::isOpen(SearchNode* n)
 {
 	bool flag = false;
@@ -250,6 +256,26 @@ bool SearchAI::isClosed(SearchNode* n)
 	return flag;
 }
 
+void SearchAI::clearOpenNodes()
+{
+	openNodes.clear();
+}
+
+void SearchAI::clearClosedNodes()
+{
+	if (closedNodes.empty() == false)
+	{
+		int closedSize = closedNodes.size();
+		for (int i = 0; i < closedSize; ++i)
+		{
+			SearchNode* currptr = closedNodes.at(i);
+			if (currptr != nullptr) { delete currptr; }
+		}
+		//after deleting all SearchNodes in heap that are pointed to by pointers in closedNodes, clear closedNodes of hanging pointers
+		closedNodes.clear();
+	}
+}
+
 SearchAI::SearchAI()
 {
 }
@@ -271,6 +297,7 @@ SearchResult SearchAI::search(GameState initialState, GameState goalState)
 	//this->goalState = goalState;
 	goalNode.setState(goalState);
 	goalNode.setH(scoreGameState(goalState));
+	goalNode.setG(INT_MAX); //don't know how deep in the tree the goal Node will be
 
 	//intialize the open nodes container
 	if (openNodes.isEmpty() == false)
@@ -279,17 +306,7 @@ SearchResult SearchAI::search(GameState initialState, GameState goalState)
 	}
 
 	//initialize the closed nodes container
-	if (closedNodes.empty() == false)
-	{
-		int closedSize = closedNodes.size();
-		for (int i = 0; i < closedSize; ++i)
-		{
-			SearchNode* currptr = closedNodes.at(i);
-			if (currptr != nullptr) { delete currptr; }
-		}
-		//after deleting all SearchNodes in heap that are pointed to by pointers in closedNodes, clear closedNodes of hanging pointers
-		closedNodes.clear();
-	}
+	clearClosedNodes();
 
 	//add the root node to open
 	openNodes.add(rootNode);

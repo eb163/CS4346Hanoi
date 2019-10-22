@@ -1,16 +1,16 @@
 #include "PriorityQueue.h"
 
-SearchNode PriorityQueue::peek()
+SearchNode* PriorityQueue::peek()
 {
 	return contents.front();
 }
 
-SearchNode PriorityQueue::peekAt(int index)
+SearchNode* PriorityQueue::peekAt(int index)
 {
 	if (index < contents.size())
 	{
-		SearchNode result;
-		list<SearchNode>::iterator i = contents.begin();
+		SearchNode* result;
+		list<SearchNode*>::iterator i = contents.begin();
 		for (int num = 0; num < index; ++num) { ++i; /*increment iterator*/ }
 		result = *i;
 		return result;
@@ -18,27 +18,28 @@ SearchNode PriorityQueue::peekAt(int index)
 	else
 	{
 		//throw an exception
+		//TODO
 	}
 }
 
-SearchNode PriorityQueue::pop()
+SearchNode* PriorityQueue::pop()
 {
-	SearchNode front = contents.front();
+	SearchNode* front = contents.front();
 	contents.pop_front();
 	return front;
 }
 
-void PriorityQueue::add(SearchNode n)
+void PriorityQueue::add(SearchNode* n)
 {
-	int fScore = n.getF();
+	int fScore = n->getF();
 	if (isEmpty() == false)
 	{
-		list<SearchNode>::iterator index = contents.begin();
+		list<SearchNode*>::iterator index = contents.begin();
 		bool hitEnd = false;
 		bool inserted = false;
 		do
 		{
-			int currFScore = (*index).getF();
+			int currFScore = (*index)->getF();
 			if (currFScore > fScore)
 			{
 				contents.insert(index, n); 
@@ -61,7 +62,16 @@ void PriorityQueue::add(SearchNode n)
 
 void PriorityQueue::clear()
 {
-	contents.clear();
+	if (contents.empty() == false)
+	{
+		for (int i = 0; i < contents.size(); ++i)
+		{
+			SearchNode* currptr = this->peekAt(i);
+			if (currptr != nullptr) { delete currptr; }
+		}
+		//after deleting any SearchNodes pointed to by pointers remaining in the Queue, clear the Queue of hanging pointers
+		contents.clear();
+	}
 }
 
 int PriorityQueue::getSize()

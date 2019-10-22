@@ -260,7 +260,7 @@ SearchAI::~SearchAI()
 {
 }
 
-void SearchAI::search(GameState initialState, GameState goalState)
+SearchResult SearchAI::search(GameState initialState, GameState goalState)
 {
 	//setup the initialNode in the tree
 	SearchNode rootNode;
@@ -299,7 +299,9 @@ void SearchAI::search(GameState initialState, GameState goalState)
 		//if currN is goal node, stop search and return success
 		if (isGoal == true)
 		{
-
+			SearchResult result(ResultType::RESULT_SUCCESS);
+			//load data into result
+			return result;
 		}
 
 		//else
@@ -328,4 +330,9 @@ void SearchAI::search(GameState initialState, GameState goalState)
 		//repeat loop
 
 	} while (openNodes.isEmpty() == false);
+
+	//if do-while loop completes, all nodes have been searched and no result has been found
+
+	SearchResult result(ResultType::RESULT_FAILURE);
+	return result;
 }

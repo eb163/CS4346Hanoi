@@ -275,21 +275,21 @@ void unitTestPriorityQueue()
 	//ORDER: sn4, sn1, sn3, sn2
 	int sn1G = 0, sn2G = 1, sn3G = 1, sn4G = 2;
 	int sn1H = 5, sn2H = 9, sn3H = 7, sn4H = 2;
-	SearchNode sn1; sn1.setG(sn1G); sn1.setH(sn1H);
-	SearchNode sn2; sn2.setG(sn2G); sn2.setH(sn2H);
-	SearchNode sn3; sn3.setG(sn3G); sn3.setH(sn3H);
-	SearchNode sn4; sn4.setG(sn4G); sn4.setH(sn4H);
+	SearchNode* sn1 = new SearchNode; sn1->setG(sn1G); sn1->setH(sn1H);
+	SearchNode* sn2 = new SearchNode; sn2->setG(sn2G); sn2->setH(sn2H);
+	SearchNode* sn3 = new SearchNode; sn3->setG(sn3G); sn3->setH(sn3H);
+	SearchNode* sn4 = new SearchNode; sn4->setG(sn4G); sn4->setH(sn4H);
 
-	cout << "Test data: sn1.F() = " << sn1.getF() << " sn2.F() = " << sn2.getF() << " sn3.F() = " << sn3.getF() << " sn4.F() = " << sn4.getF() << endl;
+	cout << "Test data: sn1.F() = " << sn1->getF() << " sn2.F() = " << sn2->getF() << " sn3.F() = " << sn3->getF() << " sn4.F() = " << sn4->getF() << endl;
 
 	PriorityQueue pq;
 	cout << "Initial PriorityQueue size: " << pq.getSize() << endl;
 
 	cout << "Adding SearchNodes to PriorityQueue...";
-	cout << "\nAdding sn1..."; pq.add(&sn1);
-	cout << "\nAdding sn2..."; pq.add(&sn2);
-	cout << "\nAdding sn3..."; pq.add(&sn3);
-	cout << "\nAdding sn4..."; pq.add(&sn4);
+	cout << "\nAdding sn1..."; pq.add(sn1);
+	cout << "\nAdding sn2..."; pq.add(sn2);
+	cout << "\nAdding sn3..."; pq.add(sn3);
+	cout << "\nAdding sn4..."; pq.add(sn4);
 	cout << "...All done!" << endl;
 
 	int pqSize = pq.getSize();
@@ -307,10 +307,10 @@ void unitTestPriorityQueue()
 	cout << "Done." << endl;
 
 	cout << "Reloading data and attempting to clear PriorityQueue...";
-	pq.add(&sn1);
-	pq.add(&sn2);
-	pq.add(&sn3);
-	pq.add(&sn4);
+	pq.add(sn1);
+	pq.add(sn2);
+	pq.add(sn3);
+	pq.add(sn4);
 	pq.clear();
 	cout << "Done." << endl;
 

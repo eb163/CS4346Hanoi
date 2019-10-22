@@ -329,10 +329,10 @@ void unitTestSearchAI()
 	GameState gs3 = gs1; gs3.move(TowerSelection::TOWER_A, TowerSelection::TOWER_C);
 	GameState gsOther; gsOther.init(1);
 
-	SearchNode sn1; sn1.setState(gs1); sn1.setH(scoreGameState(gs1)); sn1.setG(0);
-	SearchNode sn2; sn2.setState(gs2); sn2.setH(scoreGameState(gs2)); sn2.setG(0);
-	SearchNode sn3; sn3.setState(gs3); sn3.setH(scoreGameState(gs3)); sn3.setG(1);
-	SearchNode snOther; snOther.setState(gsOther); snOther.setH(scoreGameState(gsOther)); snOther.setG(0);
+	SearchNode* sn1 = new SearchNode; sn1->setState(gs1); sn1->setH(scoreGameState(gs1)); sn1->setG(0);
+	SearchNode* sn2 = new SearchNode; sn2->setState(gs2); sn2->setH(scoreGameState(gs2)); sn2->setG(0);
+	SearchNode* sn3 = new SearchNode; sn3->setState(gs3); sn3->setH(scoreGameState(gs3)); sn3->setG(1);
+	SearchNode* snOther = new SearchNode; snOther->setState(gsOther); snOther->setH(scoreGameState(gsOther)); snOther->setG(0);
 
 	cout << "Game State 1:" << endl;
 	printGameState(gs1);
@@ -343,33 +343,53 @@ void unitTestSearchAI()
 	cout << "\nGame State 3: " << endl;
 	printGameState(gs3);
 
-	bool res1 = sai.compareNode(&sn1, &sn2);
-	bool res2 = sai.compareNode(&sn1, &sn3);
+	bool res1 = sai.compareNode(sn1, sn2);
+	bool res2 = sai.compareNode(sn1, sn3);
 
 	cout << "Comparing SearchNode1(GameState1) to SearchNode2(GameState2). Result: " << res1 << endl;
 	cout << "Comparing SearchNode1(GameState1) to SearchNode3(GameState3). Result: " << res2 << endl;
 
 	cout << "Adding SearchNode1 to SearchAI.openNodes list...";
-	sai.addNodeToOpen(&sn1);
-	cout << "Done. \nCalling SearchAI.isOpen(SearchNode1). Result: " << sai.isOpen(&sn1) << endl;
+	sai.addNodeToOpen(sn1);
+	cout << "Done. \nCalling SearchAI.isOpen(SearchNode1). Result: " << sai.isOpen(sn1) << endl;
 
 	cout << "Adding SearchNode3 to SearchAI.closedNodes list...";
-	sai.addNodeToClosed(&sn3);
-	cout << "Done. \nCalling SearchAI.isClosed(SearchNode3). Result: " << sai.isClosed(&sn3) << endl;
+	sai.addNodeToClosed(sn3);
+	cout << "Done. \nCalling SearchAI.isClosed(SearchNode3). Result: " << sai.isClosed(sn3) << endl;
 
 	cout << "\nSearching open and closed for a SearchNode that is not in either list..." << endl;
-	cout << "Open result: " << sai.isOpen(&snOther) << endl;
-	cout << "Closed result: " << sai.isClosed(&snOther) << endl;
+	cout << "Open result: " << sai.isOpen(snOther) << endl;
+	cout << "Closed result: " << sai.isClosed(snOther) << endl;
 
 	pause();
 
 	cout << "Generating a set of possible moves from an initial GameState" << endl;
 	cout << "Initial GameState:" << endl;
-	printGameState(sn1.getState());
+	printGameState(sn1->getState());
 
-	vector<SearchNode*> moves = sai.generateMoves(&sn1);
+	vector<SearchNode*> moves = sai.generateMoves(sn1);
 
 	printMoves(moves);
+
+	cout << "Attempting to clear SearchAI...";
+	sai.clear();
+	cout << "Done." << endl;
+
+	cout << "Attempting to clear an already cleared SearchAI...";
+	sai.clear();
+	cout << "Done." << endl;
+
+	//clean up move ptrs to avoid memory leak
+	if (moves.empty() == false)
+	{
+		int mvSize = moves.size();
+		for (int i = 0; i < mvSize; ++i)
+		{
+			SearchNode* curptr = moves.at(i);
+			if (curptr != nullptr) { delete curptr; }
+		}
+		moves.clear();
+	}
 
 	cout << "Unit Test SearchAI completed!" << endl;
 	pause();

@@ -89,7 +89,7 @@ void printGameState(GameState gs)
 	printLine();
 }
 
-void printMoves(vector<SearchNode> moves)
+void printMoves(vector<SearchNode*> moves)
 {
 	int moveTotal = moves.size();
 	cout << "Moves: " << endl;
@@ -97,10 +97,10 @@ void printMoves(vector<SearchNode> moves)
 	for (int i = 0; i < moveTotal; ++i)
 	{
 		cout << "Move " << i + 1 << ": " << endl;
-		cout << "G = " << moves.at(i).getG() << endl;
-		cout << "H = " << moves.at(i).getH() << endl;
-		cout << "F = " << moves.at(i).getF() << endl;
-		printGameState(moves.at(i).getState());
+		cout << "G = " << moves.at(i)->getG() << endl;
+		cout << "H = " << moves.at(i)->getH() << endl;
+		cout << "F = " << moves.at(i)->getF() << endl;
+		printGameState(moves.at(i)->getState());
 	}
 	printLine('+');
 }

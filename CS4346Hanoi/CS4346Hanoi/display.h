@@ -1,7 +1,9 @@
 #pragma once
 #include <iostream>
+#include <vector>
 #include "Tower.h"
 #include "scoreFunctions.h"
+#include "SearchNode.h"
 
 /*
 
@@ -12,6 +14,8 @@ Various methods for printing game data to the screen
 using std::cout;
 using std::endl;
 using std::cin;
+
+using std::vector;
 
 void pause()
 {
@@ -83,4 +87,20 @@ void printGameState(GameState gs)
 	printTower(gs.getTower(TowerSelection::TOWER_B));
 	printTower(gs.getTower(TowerSelection::TOWER_C));
 	printLine();
+}
+
+void printMoves(vector<SearchNode> moves)
+{
+	int moveTotal = moves.size();
+	cout << "Moves: " << endl;
+	printLine('+');
+	for (int i = 0; i < moveTotal; ++i)
+	{
+		cout << "Move " << i + 1 << ": " << endl;
+		cout << "G = " << moves.at(i).getG() << endl;
+		cout << "H = " << moves.at(i).getH() << endl;
+		cout << "F = " << moves.at(i).getF() << endl;
+		printGameState(moves.at(i).getState());
+	}
+	printLine('+');
 }

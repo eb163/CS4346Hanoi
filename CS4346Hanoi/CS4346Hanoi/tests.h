@@ -286,10 +286,10 @@ void unitTestPriorityQueue()
 	cout << "Initial PriorityQueue size: " << pq.getSize() << endl;
 
 	cout << "Adding SearchNodes to PriorityQueue...";
-	cout << "\nAdding sn1..."; pq.add(sn1);
-	cout << "\nAdding sn2..."; pq.add(sn2);
-	cout << "\nAdding sn3..."; pq.add(sn3);
-	cout << "\nAdding sn4..."; pq.add(sn4);
+	cout << "\nAdding sn1..."; pq.add(&sn1);
+	cout << "\nAdding sn2..."; pq.add(&sn2);
+	cout << "\nAdding sn3..."; pq.add(&sn3);
+	cout << "\nAdding sn4..."; pq.add(&sn4);
 	cout << "...All done!" << endl;
 
 	int pqSize = pq.getSize();
@@ -301,6 +301,18 @@ void unitTestPriorityQueue()
 		cout << n.getF() << " ";
 	}
 	cout << endl;
+
+	cout << "Attempting to clear an empty PriorityQueue...";
+	pq.clear();
+	cout << "Done." << endl;
+
+	cout << "Reloading data and attempting to clear PriorityQueue...";
+	pq.add(&sn1);
+	pq.add(&sn2);
+	pq.add(&sn3);
+	pq.add(&sn4);
+	pq.clear();
+	cout << "Done." << endl;
 
 	cout << "Unit Test PriorityQueue completed!" << endl;
 	pause();
@@ -331,23 +343,23 @@ void unitTestSearchAI()
 	cout << "\nGame State 3: " << endl;
 	printGameState(gs3);
 
-	bool res1 = sai.compareNode(sn1, sn2);
-	bool res2 = sai.compareNode(sn1, sn3);
+	bool res1 = sai.compareNode(&sn1, &sn2);
+	bool res2 = sai.compareNode(&sn1, &sn3);
 
 	cout << "Comparing SearchNode1(GameState1) to SearchNode2(GameState2). Result: " << res1 << endl;
 	cout << "Comparing SearchNode1(GameState1) to SearchNode3(GameState3). Result: " << res2 << endl;
 
 	cout << "Adding SearchNode1 to SearchAI.openNodes list...";
-	sai.addNodeToOpen(sn1);
-	cout << "Done. \nCalling SearchAI.isOpen(SearchNode1). Result: " << sai.isOpen(sn1) << endl;
+	sai.addNodeToOpen(&sn1);
+	cout << "Done. \nCalling SearchAI.isOpen(SearchNode1). Result: " << sai.isOpen(&sn1) << endl;
 
 	cout << "Adding SearchNode3 to SearchAI.closedNodes list...";
-	sai.addNodeToClosed(sn3);
-	cout << "Done. \nCalling SearchAI.isClosed(SearchNode3). Result: " << sai.isClosed(sn3) << endl;
+	sai.addNodeToClosed(&sn3);
+	cout << "Done. \nCalling SearchAI.isClosed(SearchNode3). Result: " << sai.isClosed(&sn3) << endl;
 
 	cout << "\nSearching open and closed for a SearchNode that is not in either list..." << endl;
-	cout << "Open result: " << sai.isOpen(snOther) << endl;
-	cout << "Closed result: " << sai.isClosed(snOther) << endl;
+	cout << "Open result: " << sai.isOpen(&snOther) << endl;
+	cout << "Closed result: " << sai.isClosed(&snOther) << endl;
 
 	pause();
 
@@ -355,7 +367,7 @@ void unitTestSearchAI()
 	cout << "Initial GameState:" << endl;
 	printGameState(sn1.getState());
 
-	vector<SearchNode> moves = sai.generateMoves(sn1);
+	vector<SearchNode*> moves = sai.generateMoves(&sn1);
 
 	printMoves(moves);
 

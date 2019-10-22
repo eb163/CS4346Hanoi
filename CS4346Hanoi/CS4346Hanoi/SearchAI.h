@@ -18,12 +18,16 @@ class SearchAI
 private:
 	PriorityQueue openNodes;
 	vector<SearchNode> closedNodes;
-	GameState goalState;
+	SearchNode goalNode;
+	//GameState goalState;
 
 protected:
+/*
 	bool isOpen(SearchNode n); //searches openNodes for a Node that matches n
 	bool isClosed(SearchNode n); //searches closedNodes for a Node that matches n
-	void compareNodes(SearchNode n1, SearchNode n2);
+	bool compareNode(SearchNode n1, SearchNode n2); //returns true if n1 and n2 are exactly the same
+	vector<SearchNode> generateMoves(SearchNode curr); //generate a set of SearchNodes based on the state of the passed SearchNode
+*/
 
 public:
 	SearchAI();
@@ -31,5 +35,13 @@ public:
 
 	virtual void startSearch(GameState initialState, GameState goalState); //pass the starting state and goal state for starting the search
 	virtual void search(GameState initialState, GameState goalState);
+
+	bool isOpen(SearchNode n); //searches openNodes for a Node that matches n
+	bool isClosed(SearchNode n); //searches closedNodes for a Node that matches n
+	bool compareNode(SearchNode n1, SearchNode n2); //returns true if n1 and n2 are exactly the same
+	vector<SearchNode> generateMoves(SearchNode curr); //generate a set of SearchNodes based on the state of the passed SearchNode
+
+	void addNodeToOpen(SearchNode n); //add a node to open (primarily for testing isOpen)
+	void addNodeToClosed(SearchNode n); //add a Node to closed (priarily for testing isClosed)
 };
 

@@ -3,7 +3,7 @@
 #define TEST_UNIT_GAMESTATE		false
 #define TEST_SYS_GAMESTATE		false
 #define TEST_UNIT_SEARCHNODE	false
-#define TEST_UNIT_PRIORITYQUEUE	true
+#define TEST_UNIT_PRIORITYQUEUE	false
 #define TEST_UNIT_SEARCHAI		true
 
 #include <iostream>

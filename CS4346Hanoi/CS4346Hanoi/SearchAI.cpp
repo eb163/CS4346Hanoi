@@ -1,15 +1,14 @@
 #include "SearchAI.h"
 
-bool SearchAI::compareNode(SearchNode n1, SearchNode n2) //INCOMPLETE, TODO
+bool SearchAI::compareNode(SearchNode* n1, SearchNode* n2)
 {
-	bool matches = false;
 	bool hMatch = false, tAMatch = false, tBMatch = false, tCMatch = false;
 	//compare the h values of the two game states
-	if (n1.getH() == n2.getH())
+	if (n1->getH() == n2->getH())
 	{
 		hMatch = true;
-		GameState gs1 = n1.getState();
-		GameState gs2 = n2.getState();
+		GameState gs1 = n1->getState();
+		GameState gs2 = n2->getState();
 		
 		//compare the 3 towers of the two game states
 		Tower gs1T = gs1.getTower(TowerSelection::TOWER_A);

@@ -116,6 +116,7 @@
     <ClCompile Include="scoreFunctions.cpp" />
     <ClCompile Include="SearchAI.cpp" />
     <ClCompile Include="SearchNode.cpp" />
+    <ClCompile Include="SearchResult.cpp" />
     <ClCompile Include="Tower.cpp" />
   </ItemGroup>
   <ItemGroup>
@@ -125,6 +126,7 @@
     <ClInclude Include="scoreFunctions.h" />
     <ClInclude Include="SearchAI.h" />
     <ClInclude Include="SearchNode.h" />
+    <ClInclude Include="SearchResult.h" />
     <ClInclude Include="tests.h" />
     <ClInclude Include="Tower.h" />
   </ItemGroup>

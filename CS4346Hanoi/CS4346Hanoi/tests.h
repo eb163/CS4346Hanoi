@@ -7,6 +7,7 @@
 #include "Tower.h"
 #include "SearchNode.h"
 #include "PriorityQueue.h"
+#include "SearchAI.h"
 #include "display.h"
 #include <iostream>
 
@@ -302,5 +303,62 @@ void unitTestPriorityQueue()
 	cout << endl;
 
 	cout << "Unit Test PriorityQueue completed!" << endl;
+	pause();
+}
+
+void unitTestSearchAI()
+{
+	cout << "Unit Test SearchAI" << endl;
+
+	SearchAI sai;
+
+	GameState gs1; gs1.init(3);
+	GameState gs2 = gs1;
+	GameState gs3 = gs1; gs3.move(TowerSelection::TOWER_A, TowerSelection::TOWER_C);
+	GameState gsOther; gsOther.init(1);
+
+	SearchNode sn1; sn1.setState(gs1); sn1.setH(scoreGameState(gs1)); sn1.setG(0);
+	SearchNode sn2; sn2.setState(gs2); sn2.setH(scoreGameState(gs2)); sn2.setG(0);
+	SearchNode sn3; sn3.setState(gs3); sn3.setH(scoreGameState(gs3)); sn3.setG(1);
+	SearchNode snOther; snOther.setState(gsOther); snOther.setH(scoreGameState(gsOther)); snOther.setG(0);
+
+	cout << "Game State 1:" << endl;
+	printGameState(gs1);
+
+	cout << "\nGameState 2:" << endl;
+	printGameState(gs2);
+
+	cout << "\nGame State 3: " << endl;
+	printGameState(gs3);
+
+	bool res1 = sai.compareNode(sn1, sn2);
+	bool res2 = sai.compareNode(sn1, sn3);
+
+	cout << "Comparing SearchNode1(GameState1) to SearchNode2(GameState2). Result: " << res1 << endl;
+	cout << "Comparing SearchNode1(GameState1) to SearchNode3(GameState3). Result: " << res2 << endl;
+
+	cout << "Adding SearchNode1 to SearchAI.openNodes list...";
+	sai.addNodeToOpen(sn1);
+	cout << "Done. \nCalling SearchAI.isOpen(SearchNode1). Result: " << sai.isOpen(sn1) << endl;
+
+	cout << "Adding SearchNode3 to SearchAI.closedNodes list...";
+	sai.addNodeToClosed(sn3);
+	cout << "Done. \nCalling SearchAI.isClosed(SearchNode3). Result: " << sai.isClosed(sn3) << endl;
+
+	cout << "\nSearching open and closed for a SearchNode that is not in either list..." << endl;
+	cout << "Open result: " << sai.isOpen(snOther) << endl;
+	cout << "Closed result: " << sai.isClosed(snOther) << endl;
+
+	pause();
+
+	cout << "Generating a set of possible moves from an initial GameState" << endl;
+	cout << "Initial GameState:" << endl;
+	printGameState(sn1.getState());
+
+	vector<SearchNode> moves = sai.generateMoves(sn1);
+
+	printMoves(moves);
+
+	cout << "Unit Test SearchAI completed!" << endl;
 	pause();
 }

@@ -3,13 +3,15 @@
 #define TEST_UNIT_GAMESTATE		false
 #define TEST_SYS_GAMESTATE		false
 #define TEST_UNIT_SEARCHNODE	false
-#define TEST_UNIT_PRIORITYQUEUE	true
+#define TEST_UNIT_PRIORITYQUEUE	false
+#define TEST_UNIT_SEARCHAI		true
 
 #include <iostream>
 #include "Tower.h"
 #include "GameState.h"
 #include "SearchNode.h"
 #include "PriorityQueue.h"
+#include "SearchAI.h"
 #include "display.h"
 #include "tests.h"
 using std::cout;
@@ -47,6 +49,10 @@ int main()
 
 #if TEST_UNIT_PRIORITYQUEUE == true
 	unitTestPriorityQueue();
+#endif
+
+#if TEST_UNIT_SEARCHAI == true
+	unitTestSearchAI();
 #endif
 
 	return 0;

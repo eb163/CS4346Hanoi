@@ -7,7 +7,7 @@ A class for containing all three Tower states for the game.
 
 */
 
-enum TowerSelection {TOWER_A = 0, TOWER_B = 1, TOWER_C = 2};
+enum TowerSelection {TOWER_A = 0, TOWER_B = 1, TOWER_C = 2, TOWER_TOTAL = 3};
 
 class GameState
 {

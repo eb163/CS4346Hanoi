@@ -262,10 +262,10 @@ SearchAI::~SearchAI()
 SearchResult SearchAI::search(GameState initialState, GameState goalState)
 {
 	//setup the initialNode in the tree
-	SearchNode rootNode;
-	rootNode.setState(initialState);
-	rootNode.setG(0);
-	rootNode.setH(scoreGameState(initialState));
+	SearchNode* rootNode = new SearchNode();
+	rootNode->setState(initialState);
+	rootNode->setG(0);
+	rootNode->setH(scoreGameState(initialState));
 
 	//set up the goalNode for comparison
 	//this->goalState = goalState;
@@ -281,6 +281,13 @@ SearchResult SearchAI::search(GameState initialState, GameState goalState)
 	//initialize the closed nodes container
 	if (closedNodes.empty() == false)
 	{
+		int closedSize = closedNodes.size();
+		for (int i = 0; i < closedSize; ++i)
+		{
+			SearchNode* currptr = closedNodes.at(i);
+			if (currptr != nullptr) { delete currptr; }
+		}
+		//after deleting all SearchNodes in heap that are pointed to by pointers in closedNodes, clear closedNodes of hanging pointers
 		closedNodes.clear();
 	}
 
@@ -290,10 +297,10 @@ SearchResult SearchAI::search(GameState initialState, GameState goalState)
 	//run search loop
 	do
 	{
-		SearchNode currN = openNodes.pop(); //get the top from the queue
+		SearchNode* currN = openNodes.pop(); //get the top from the queue
 
 		//compare currN with goal
-		bool isGoal = compareNode(currN, goalNode);
+		bool isGoal = compareNode(currN, &goalNode);
 
 		//if currN is goal node, stop search and return success
 		if (isGoal == true)
@@ -307,7 +314,7 @@ SearchResult SearchAI::search(GameState initialState, GameState goalState)
 		else
 		{
 			//generate children from currN
-			vector<SearchNode> moves = generateMoves(currN);
+			vector<SearchNode*> moves = generateMoves(currN);
 			for (int i = 0; i < moves.size(); ++i)
 			{
 				//evaluate children

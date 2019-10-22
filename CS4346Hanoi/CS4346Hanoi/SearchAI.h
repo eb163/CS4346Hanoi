@@ -39,7 +39,7 @@ public:
 	bool isOpen(SearchNode n); //searches openNodes for a Node that matches n
 	bool isClosed(SearchNode n); //searches closedNodes for a Node that matches n
 	bool compareNode(SearchNode* n1, SearchNode* n2); //returns true if n1 and n2 are exactly the same
-	vector<SearchNode> generateMoves(SearchNode curr); //generate a set of SearchNodes based on the state of the passed SearchNode
+	vector<SearchNode*> generateMoves(SearchNode* curr); //generate a set of SearchNodes based on the state of the passed SearchNode
 
 	void addNodeToOpen(SearchNode n); //add a node to open (primarily for testing isOpen)
 	void addNodeToClosed(SearchNode n); //add a Node to closed (priarily for testing isClosed)

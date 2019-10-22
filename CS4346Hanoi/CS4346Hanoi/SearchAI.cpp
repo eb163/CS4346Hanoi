@@ -61,12 +61,12 @@ bool SearchAI::compareNode(SearchNode* n1, SearchNode* n2)
 	return (hMatch && tAMatch && tBMatch&& tCMatch);
 }
 
-vector<SearchNode> SearchAI::generateMoves(SearchNode curr)
+vector<SearchNode*> SearchAI::generateMoves(SearchNode* curr)
 {
-	vector<SearchNode> moves;
+	vector<SearchNode*> moves;
 
 	//look at the current state
-	GameState currState = curr.getState();
+	GameState currState = curr->getState();
 
 	//all possible moves consist of all combinations of moving the top disc from
 	//one tower to the two other towers
@@ -96,10 +96,10 @@ vector<SearchNode> SearchAI::generateMoves(SearchNode curr)
 			newgs.move(TowerSelection::TOWER_A, TowerSelection::TOWER_B);
 
 			//store move in a search node
-			SearchNode newnode;
-			newnode.setState(newgs);
-			newnode.setG(curr.getG() + 1);
-			newnode.setH(scoreGameState(newgs));
+			SearchNode* newnode = new SearchNode();
+			newnode->setState(newgs);
+			newnode->setG(curr->getG() + 1);
+			newnode->setH(scoreGameState(newgs));
 
 			//load node into moves vector
 			moves.push_back(newnode);
@@ -111,10 +111,10 @@ vector<SearchNode> SearchAI::generateMoves(SearchNode curr)
 			newgs.move(TowerSelection::TOWER_A, TowerSelection::TOWER_C);
 
 			//store move in a search node
-			SearchNode newnode;
-			newnode.setState(newgs);
-			newnode.setG(curr.getG() + 1);
-			newnode.setH(scoreGameState(newgs));
+			SearchNode* newnode = new SearchNode();
+			newnode->setState(newgs);
+			newnode->setG(curr->getG() + 1);
+			newnode->setH(scoreGameState(newgs));
 
 			//load node into moves vector
 			moves.push_back(newnode);
@@ -140,10 +140,10 @@ vector<SearchNode> SearchAI::generateMoves(SearchNode curr)
 			newgs.move(TowerSelection::TOWER_B, TowerSelection::TOWER_A);
 
 			//store move in a search node
-			SearchNode newnode;
-			newnode.setState(newgs);
-			newnode.setG(curr.getG() + 1);
-			newnode.setH(scoreGameState(newgs));
+			SearchNode* newnode = new SearchNode();
+			newnode->setState(newgs);
+			newnode->setG(curr->getG() + 1);
+			newnode->setH(scoreGameState(newgs));
 
 			//load node into moves vector
 			moves.push_back(newnode);
@@ -155,10 +155,10 @@ vector<SearchNode> SearchAI::generateMoves(SearchNode curr)
 			newgs.move(TowerSelection::TOWER_B, TowerSelection::TOWER_C);
 
 			//store move in a search node
-			SearchNode newnode;
-			newnode.setState(newgs);
-			newnode.setG(curr.getG() + 1);
-			newnode.setH(scoreGameState(newgs));
+			SearchNode* newnode = new SearchNode();
+			newnode->setState(newgs);
+			newnode->setG(curr->getG() + 1);
+			newnode->setH(scoreGameState(newgs));
 
 			//load node into moves vector
 			moves.push_back(newnode);
@@ -184,10 +184,10 @@ vector<SearchNode> SearchAI::generateMoves(SearchNode curr)
 			newgs.move(TowerSelection::TOWER_C, TowerSelection::TOWER_A);
 
 			//store move in a search node
-			SearchNode newnode;
-			newnode.setState(newgs);
-			newnode.setG(curr.getG() + 1);
-			newnode.setH(scoreGameState(newgs));
+			SearchNode* newnode = new SearchNode();
+			newnode->setState(newgs);
+			newnode->setG(curr->getG() + 1);
+			newnode->setH(scoreGameState(newgs));
 
 			//load node into moves vector
 			moves.push_back(newnode);
@@ -199,10 +199,10 @@ vector<SearchNode> SearchAI::generateMoves(SearchNode curr)
 			newgs.move(TowerSelection::TOWER_C, TowerSelection::TOWER_B);
 
 			//store move in a search node
-			SearchNode newnode;
-			newnode.setState(newgs);
-			newnode.setG(curr.getG() + 1);
-			newnode.setH(scoreGameState(newgs));
+			SearchNode* newnode = new SearchNode();
+			newnode->setState(newgs);
+			newnode->setG(curr->getG() + 1);
+			newnode->setH(scoreGameState(newgs));
 
 			//load node into moves vector
 			moves.push_back(newnode);
